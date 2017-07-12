@@ -11,7 +11,7 @@
               {{$ctrl.post.title}}
             </span>
             <!-- Display input for editing post.published only if editable and in edit mode -->
-            <div class="switch" ng-if="($ctrl.editable && $ctrl.editMode)" ><label>Off<input type="checkbox" ng-model="$ctrl.post.published"><span class="lever"></span>On</label></div>
+            <div class="switch" ng-if="($ctrl.editable && $ctrl.editMode)"><label>Off<input type="checkbox" ng-model="$ctrl.post.published"><span class="lever"></span>On</label></div>
             <!-- Display input for editing post.title only if editable and in edit mode -->
             <input type="text" ng-if="($ctrl.editable && $ctrl.editMode)" ng-model="$ctrl.post.title" placeholder="Title">
             <!-- Display post.createdAt if this component is not editable or editable and not in edit mode -->

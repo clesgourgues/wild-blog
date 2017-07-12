@@ -18,6 +18,12 @@ module.exports = mongoose.model('Post', new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    updatedAt:
+    {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
     published:
     {
         type: Boolean,
