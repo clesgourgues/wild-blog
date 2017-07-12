@@ -33,6 +33,19 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
         })
         .state('algo1', {
             url: '/algo1',
-            component: 'algo1'
+            template: '<h1>Here are my best friends ever</h1><ul><li ng-repeat="name in names">{{name}}<li>',
+            controller: ['$scope', function ($scope) {
+                function retrieveBest() {
+                    var tabNames = ["Ryan", "Kieran", "Mark"];
+                    var tabBest = [];
+                    for (var i = 0; i < tabNames.length; i++) {
+                        if (tabNames[i].length === 4) {
+                            tabBest.push(tabNames[i]);
+                        }
+                    }
+                    return tabBest
+                }
+                $scope.names = retrieveBest();
+            }]
         })
 }]
