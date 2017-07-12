@@ -13,6 +13,7 @@ class Controller {
     find(req, res, next) {
         // Get all documents and filter with queries string (req.query : ex. http://domain.ext/api/?query=string)
         this.model.find(req.query, (err, documents) => {
+            
             res.json(documents)
         })
     }
