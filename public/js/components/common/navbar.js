@@ -1,9 +1,12 @@
 let navbar = {
     templateUrl: 'js/components/common/navbar.html',
-    controller: ['UsersService', '$state', function(UsersService, $state) {
+    controller: ['UsersService', '$state', function (UsersService, $state) {
         'use strict'
         angular.extend(this, {
             $onInit() {
+                var moment = require('moment');
+                moment().format();
+                this.timer = moment();
                 UsersService.getCurrent().then((user) => {
                     this.user = user
                 }).catch((err) => {
@@ -19,6 +22,7 @@ let navbar = {
             }
 
         })
+
     }]
 }
 
