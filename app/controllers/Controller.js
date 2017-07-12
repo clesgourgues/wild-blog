@@ -13,8 +13,10 @@ class Controller {
     find(req, res, next) {
         // Get all documents and filter with queries string (req.query : ex. http://domain.ext/api/?query=string)
         this.model.find({ published: true }, (err, documents) => {
-
-            res.json(documents)
+            if (err)
+                next(err)
+            else
+                res.json(documents)
         })
     }
 
@@ -23,8 +25,10 @@ class Controller {
         this.model.findById(req.params.id, (err, document) => {
             if (err)
                 next(err)
-            else
+            else if (document.published)
                 res.json(document)
+            else
+                res.sendStatus(403)
         })
     }
 

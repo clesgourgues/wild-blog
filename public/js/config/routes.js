@@ -48,4 +48,20 @@ export default ['$stateProvider', '$urlRouterProvider', '$locationProvider', ($s
                 $scope.names = retrieveBest();
             }]
         })
+        .state('algo2', {
+            url: '/algo2',
+            template: '<h1>The result is</h1><h2>{{result}}</h2>',
+            controller: ['$scope', function ($scope) {
+                function foldTo(distance) {
+                    var thickness = 0.0001;
+                    var count = 0;
+                    while(thickness < distance){
+                        thickness*=2;
+                        count++;
+                    }
+                    return count;
+                }
+                $scope.result = foldTo(14928418679754190000);
+            }]
+        })
 }]

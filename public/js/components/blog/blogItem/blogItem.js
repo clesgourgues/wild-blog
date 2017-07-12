@@ -9,7 +9,7 @@ let blogItem = {
         editable: "<"
     },
     templateUrl: 'js/components/blog/blogItem/blogItem.html',
-    controller: ['UsersService', 'PostsService', '$stateParams', '$state', function(UsersService, PostsService, $stateParams, $state) {
+    controller: ['UsersService', 'PostsService', '$stateParams', '$state', function (UsersService, PostsService, $stateParams, $state) {
         'use  strict'
         let initialPost;
 
@@ -35,12 +35,14 @@ let blogItem = {
                 PostsService.getById($stateParams.id).then((res) => {
                     // when this request receives response we affect response data to this controller variable post
                     this.post = res.data;
-                    // if(this.post.published == false) {
-                    //      $state.go('blog.list');
-                    // }
                     // save into initialPost a copy of this post (used for undo)
                     initialPost = angular.copy(this.post)
-                })
+                }).catch(function (post) {
+                    if (!post.published) {
+                        $state.go('blog.list')
+                        Materialize.toast('Article not published yet', 4000);
+                    }
+                });
             }
         } else {
             //If $stateParams.id doesn't exist we change state to app.blog.list (redirection to list)
