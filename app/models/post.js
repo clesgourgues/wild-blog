@@ -11,7 +11,13 @@ module.exports = mongoose.model('Post', new mongoose.Schema({
     },
     content: {
         type: String
+    },
+    created_at:
+    {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 }, {
-    timestamps: true
-}))
+        timestamps: true
+    }))

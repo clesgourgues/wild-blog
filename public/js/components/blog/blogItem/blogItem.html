@@ -1,8 +1,9 @@
 <!-- Display blogItemMenu component (see blogItemMenu.js ) and bind properties with all functions  -->
-<blog-item-menu ng-if="$ctrl.editable" user="$ctrl.user" edit-mode="$ctrl.editMode" on-undo="$ctrl.undo()" on-edit="$ctrl.editMode = !$ctrl.editMode" on-delete="$ctrl.delete()" on-save="$ctrl.save()" />
+<blog-item-menu ng-if="$ctrl.editable" user="$ctrl.user" edit-mode="$ctrl.editMode" on-undo="$ctrl.undo()" on-edit="$ctrl.editMode = !$ctrl.editMode"
+    on-delete="$ctrl.delete()" on-save="$ctrl.save()" />
 <div class="col s12 m4">
     <div class="card">
-    
+
         <!-- In general if it's not editable it's when this component is used in the blogList component -->
         <div class="card-content">
             <!-- Display post.title if this component is not editable or editable and not in edit mode -->
@@ -11,6 +12,11 @@
             </span>
             <!-- Display input for editing post.title only if editable and in edit mode -->
             <input type="text" ng-if="($ctrl.editable && $ctrl.editMode)" ng-model="$ctrl.post.title" placeholder="Title">
+            <!-- Display post.created_at if this component is not editable or editable and not in edit mode -->
+            <div class="date" ng-if="(!$ctrl.editable || ($ctrl.editable && !$ctrl.editMode))">
+                Date de publication : {{$ctrl.post.created_at | date : format : shortDate }}</div>
+            <!-- Display input for editing post.created_at only if editable and in edit mode -->
+            <input type="date" ng-if="($ctrl.editable && $ctrl.editMode)" ng-model="$ctrl.post.created_at" placeholder="Date">
             <!-- Display post.content if this component is not editable or editable and not in edit mode -->
             <div ng-if="(!$ctrl.editable || ($ctrl.editable && !$ctrl.editMode))">
                 {{$ctrl.post.content | limitTo: ($ctrl.editable ? $ctrl.post.content.length : 110)}}
